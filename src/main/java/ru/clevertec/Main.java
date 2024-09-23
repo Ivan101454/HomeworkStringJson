@@ -19,7 +19,7 @@ public class Main {
         Path input = Paths.get("input.txt");
         String strings = String.valueOf(Files.readAllLines(input));
 
-        ResolverJson.resolve(strings);
+//        ResolverJson.resolve(strings);
 
     }
 }

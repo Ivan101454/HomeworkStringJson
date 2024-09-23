@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,10 +38,12 @@ class ResolverJsonTest {
                 .name("John").city("Berlin").cars(List.of(
                         Car.builder().name("audi").build(),
                         Car.builder().name("bmw").build())).job("Teacher");
-        Map<String, String> expectMap = new HashMap<>(Map.of(
-                "name", "John", "city", "Berlin", "cars", "map1", "job", "Teacher"));
+        Map<String, Map> expectMap = new HashMap<>(Map.of(
+                "Map0",  Map.of("0", "audi", "1", "bmw"), "Map1", Map.of("name", "John",
+                        "city", "Berlin", "cars", "Map0",   "job", "Teacher")));
 
-        Map<String, String> resultMap = convertToMapCollection(jsonString);
+        Map<String, Map> resultMap = convertToMapCollection(jsonString);
+        Stream.of(resultMap).forEach(System.out::println);
         assertEquals(expectMap, resultMap);
 
     }
