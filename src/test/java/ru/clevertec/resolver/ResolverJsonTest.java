@@ -1,8 +1,9 @@
 package ru.clevertec.resolver;
 
 import org.junit.jupiter.api.Test;
-import ru.clevertec.testclass.Car;
-import ru.clevertec.testclass.Person;
+import ru.clevertec.entity.Car;
+import ru.clevertec.entity.Person;
+import ru.clevertec.util.DataForTests;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -14,33 +15,23 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.clevertec.resolver.ResolverJson.completeStackByLiteral;
 import static ru.clevertec.resolver.ResolverJson.completeStackByPunctuation;
 import static ru.clevertec.resolver.ResolverJson.convertToFlatString;
 import static ru.clevertec.resolver.ResolverJson.convertToMapCollection;
 
 class ResolverJsonTest {
-    final String jsonString = """
-                {
-                    "name":"John",
-                    "city":"Berlin",
-                    "cars":[
-                        "audi",
-                        "bmw"
-                    ],
-                    "job":"Teacher"
-                }
-                """;
+
+
+
     @Test
     void shouldMapJsonToCollection() {
-        Person.PersonBuilder expectPerson = Person.builder()
-                .name("John").city("Berlin").cars(List.of(
-                        Car.builder().name("audi").build(),
-                        Car.builder().name("bmw").build())).job("Teacher");
+        String jsonString = DataForTests.getJsonAsStringForOneObject();
+
         Map<String, Map> expectMap = new HashMap<>(Map.of(
                 "Map0",  Map.of("0", "audi", "1", "bmw"), "Map1", Map.of("name", "John",
-                        "city", "Berlin", "cars", "Map0",   "job", "Teacher")));
+                        "city", "Berlin", "cars", "Map0",   "job", "Teacher"))
+                );
 
         Map<String, Map> resultMap = convertToMapCollection(jsonString);
         Stream.of(resultMap).forEach(System.out::println);
@@ -50,7 +41,7 @@ class ResolverJsonTest {
 
     @Test
     void shouldConvertJsonToString() {
-
+        String jsonString = DataForTests.getJsonAsStringForOneObject();
         String expect = """
                 {"name":"John","city":"Berlin","cars":["audi","bmw"],"job":"Teacher"}""";
 
@@ -59,6 +50,7 @@ class ResolverJsonTest {
     }
     @Test
     void shouldCompleteStackSymbols() {
+        String jsonString = DataForTests.getJsonAsStringForOneObject();
         Deque<String> expectLiteral = new LinkedList<>(
                 Arrays.asList("name", "John", "city", "Berlin", "cars", "audi", "bmw", "job", "Teacher").reversed()
         );
@@ -70,6 +62,7 @@ class ResolverJsonTest {
     }
     @Test
     void shouldCompleteStackPunct () {
+        String jsonString = DataForTests.getJsonAsStringForOneObject();
         Deque<String> expectPunctuation = new LinkedList<>(
                 Arrays.asList("{", ":", ",", ":", ",", ":", "[", ",", "]", ",", ":", "}").reversed()
         );

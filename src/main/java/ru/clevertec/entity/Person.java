@@ -1,8 +1,7 @@
-package ru.clevertec.testclass;
+package ru.clevertec.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
