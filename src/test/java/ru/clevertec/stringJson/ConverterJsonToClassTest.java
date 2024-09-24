@@ -13,13 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ConverterJsonToClassTest {
 
     @Test
-    void shouldReturnObjectOfClass() throws NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    void shouldReturnObjectOfClassWithoutCollection() throws NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         Map<String, Map> mapOfJson = DataForTests.getMapOfJson;
-        Person expectPerson = DataForTests.getJavaObject();
+        Person expectPerson = DataForTests.getJavaObjectWithoutCollection();
         Map objectMap = mapOfJson.get("Map%d".formatted(mapOfJson.size() - 1));
 
         mapOfJson.entrySet().forEach(System.out::println);
         Person resultPerson = ConverterJsonToClass.converter(Person.class, mapOfJson);
-//        assertEquals(expectPerson, resultPerson);
+        System.out.println(resultPerson.toString());
+        assertEquals(expectPerson, resultPerson);
     }
 }

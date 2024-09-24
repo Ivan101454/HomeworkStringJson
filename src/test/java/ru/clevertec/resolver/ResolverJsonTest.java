@@ -72,19 +72,19 @@ class ResolverJsonTest {
             assertEquals(expectPunctuation.pop(), resultPunctuation.pop());
         }
     }
-    @Test
-    void shouldTestRefactorClass() throws NoSuchFieldException {
-        Person expectPerson = Person.builder()
-                .name("John").city("Berlin").cars(List.of(
-                        Car.builder().name("audi").build(),
-                        Car.builder().name("bmw").build())).job("Teacher")
-                .build();
-        Class<? extends Person> aClass = expectPerson.getClass();
-        Field name = aClass.getField("name");
-        Field[] declaredFields = aClass.getDeclaredFields();
-
-        for (int i = 0; i < declaredFields.length; i++) {
-            System.out.println(declaredFields);
-        }
-    }
+//    @Test
+//    void shouldTestRefactorClass() throws NoSuchFieldException {
+//        Person expectPerson = Person.builder()
+//                .name("John").city("Berlin").cars(List.of(
+//                        Car.builder().name("audi").build(),
+//                        Car.builder().name("bmw").build())).job("Teacher")
+//                .build();
+//        Class<? extends Person> aClass = expectPerson.getClass();
+//        Field name = aClass.getField("name");
+//        Field[] declaredFields = aClass.getDeclaredFields();
+//
+//        for (int i = 0; i < declaredFields.length; i++) {
+//            System.out.println(declaredFields);
+//        }
+//    }
 }

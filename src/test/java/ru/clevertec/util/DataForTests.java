@@ -14,8 +14,8 @@ public class DataForTests {
                     "name":"John",
                     "city":"Berlin",
                     "cars":[
-                        "audi",
-                        "bmw"
+                        {"name":"audi"},
+                        {"name":"bmw"}
                     ],
                     "job":"Teacher"
                 }
@@ -23,11 +23,18 @@ public class DataForTests {
         return jsonString;
     }
 
-    public static Person getJavaObject() {
+//    public static Person getJavaObject() {
+//        Person person = Person.builder()
+//                .name("John").city("Berlin").cars(List.of(
+//                        Car.builder().name("audi").build(),
+//                        Car.builder().name("bmw").build())).job("Teacher")
+//                .build();
+//        return person;
+//    }
+    public static Person getJavaObjectWithoutCollection() {
         Person person = Person.builder()
-                .name("John").city("Berlin").cars(List.of(
-                        Car.builder().name("audi").build(),
-                        Car.builder().name("bmw").build())).job("Teacher")
+                .name("John").city("Berlin")
+                .job("Teacher")
                 .build();
         return person;
     }

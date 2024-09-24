@@ -1,9 +1,9 @@
 {
-                    "name":"John",
-                    "city":"Berlin",
-                    "cars":[
-                        {"name":"audi"},
-                        {"name":"bmw"}
-                    ],
-                    "job":"Teacher"
+"name":"John",
+"city":"Berlin",
+"cars":[
+{"name":"audi"},
+{"name":"bmw"}
+],
+"job":"Teacher"
 }
