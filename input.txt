@@ -2,8 +2,8 @@
                     "name":"John",
                     "city":"Berlin",
                     "cars":[
-                        "audi",
-                        "bmw"
+                        {"name":"audi"},
+                        {"name":"bmw"}
                     ],
                     "job":"Teacher"
 }
