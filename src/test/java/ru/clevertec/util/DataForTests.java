@@ -22,6 +22,16 @@ public class DataForTests {
                 """;
         return jsonString;
     }
+    public static String getJsonAsStringWithoutCollect() {
+        final String jsonString = """
+                {
+                    "name":"John",
+                    "city":"Berlin",
+                    "job":"Teacher"
+                }
+                """;
+        return jsonString;
+    }
 
 //    public static Person getJavaObject() {
 //        Person person = Person.builder()

@@ -13,18 +13,9 @@ class ConvertClassToJsonTest {
     @Test
     void schouldConvertClassToString() throws IllegalAccessException {
         Person person = DataForTests.getJavaObjectWithoutCollection();
-        Class<?> classOfObject = person.getClass();
-        Field[] declaredFields = classOfObject.getDeclaredFields();
-        StringBuilder sb = new StringBuilder();
-        sb.append("{\n\r");
-        for (int i = 0; i < declaredFields.length; i++) {
-            String name = declaredFields[i].getName();
-            declaredFields[i].setAccessible(true);
-            Object o1 = declaredFields[i].get(person);
-            sb.append("\""+name+"\""+"="+"\""+o1.toString()+"\"\n\r");
-        }
-        sb.append("}");
-
-//        String coverterString = ConvertClassToJson.coverter(person);
+        String result =  ConverterClassToJson.coverter(person);
+        String expect = DataForTests.getJsonAsStringWithoutCollect();
+        System.out.println(result);
+        assertEquals(expect, result);
     }
 }
