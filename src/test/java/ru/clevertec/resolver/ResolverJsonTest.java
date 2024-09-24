@@ -15,8 +15,6 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.clevertec.resolver.ResolverJson.completeStackByLiteral;
-import static ru.clevertec.resolver.ResolverJson.completeStackByPunctuation;
 import static ru.clevertec.resolver.ResolverJson.convertToFlatString;
 import static ru.clevertec.resolver.ResolverJson.convertToMapCollection;
 
@@ -28,10 +26,7 @@ class ResolverJsonTest {
     void shouldMapJsonToCollection() {
         String jsonString = DataForTests.getJsonAsStringForOneObject();
 
-        Map<String, Map> expectMap = new HashMap<>(Map.of(
-                "Map0",  Map.of("0", "audi", "1", "bmw"), "Map1", Map.of("name", "John",
-                        "city", "Berlin", "cars", "Map0",   "job", "Teacher"))
-                );
+        Map<String, Map> expectMap = DataForTests.getMapOfJsonWithList;
 
         Map<String, Map> resultMap = convertToMapCollection(jsonString);
         Stream.of(resultMap).forEach(System.out::println);
@@ -48,30 +43,7 @@ class ResolverJsonTest {
         String result = convertToFlatString(jsonString);
         assertEquals(result, expect);
     }
-    @Test
-    void shouldCompleteStackSymbols() {
-        String jsonString = DataForTests.getJsonAsStringForOneObject();
-        Deque<String> expectLiteral = new LinkedList<>(
-                Arrays.asList("name", "John", "city", "Berlin", "cars", "audi", "bmw", "job", "Teacher").reversed()
-        );
-        String flatString = convertToFlatString(jsonString);
-        Deque<String> resultLiteral = completeStackByLiteral(flatString);
-        while (expectLiteral.iterator().hasNext()) {
-            assertEquals(expectLiteral.pop(), resultLiteral.pop());
-        }
-    }
-    @Test
-    void shouldCompleteStackPunct () {
-        String jsonString = DataForTests.getJsonAsStringForOneObject();
-        Deque<String> expectPunctuation = new LinkedList<>(
-                Arrays.asList("{", ":", ",", ":", ",", ":", "[", ",", "]", ",", ":", "}").reversed()
-        );
-        String flatString = convertToFlatString(jsonString);
-        Deque<String> resultPunctuation = completeStackByPunctuation(flatString);
-        while (expectPunctuation.iterator().hasNext()) {
-            assertEquals(expectPunctuation.pop(), resultPunctuation.pop());
-        }
-    }
+
 //    @Test
 //    void shouldTestRefactorClass() throws NoSuchFieldException {
 //        Person expectPerson = Person.builder()

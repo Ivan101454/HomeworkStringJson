@@ -39,8 +39,12 @@ public class DataForTests {
         return person;
     }
 
-    public static Map<String, Map> getMapOfJson = new HashMap<>(Map.of(
+    public static Map<String, Map> getMapOfJsonWithList = new HashMap<>(Map.of(
             "Map0",  Map.of("0", "audi", "1", "bmw"), "Map1", Map.of("name", "John",
+                    "city", "Berlin", "cars", "Map0",   "job", "Teacher"))
+    );
+    public static Map<String, Map> getMapOfJsonWithoutList = new HashMap<>(Map.of(
+             "Map0", Map.of("name", "John",
                     "city", "Berlin", "cars", "Map0",   "job", "Teacher"))
     );
 

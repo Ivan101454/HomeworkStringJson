@@ -66,29 +66,7 @@ public class ResolverJson {
     // Утилитарный метод преобразования текста json в строку
     public static String convertToFlatString(String input) {
         String result = input.replaceAll(" ", "").replaceAll("[\\n\\r]", "");
-
         return result;
-    }
-
-    public static Deque<String> completeStackByLiteral(String flatstring) {
-        Deque<String> stackByLiteral = new LinkedList<>();
-
-        Pattern pattern = Pattern.compile("\"\\w+\"");
-        Matcher matcher = pattern.matcher(flatstring);
-        while (matcher.find()) {
-            stackByLiteral.push(matcher.group().replaceAll("\"", ""));
-        }
-        return stackByLiteral;
-    }
-
-    public static Deque<String> completeStackByPunctuation(String flatstring) {
-        Deque<String> stackByPunctuation = new LinkedList<>();
-        Pattern pattern = Pattern.compile("[{}:\\[\\],]");
-        Matcher matcher = pattern.matcher(flatstring);
-        while (matcher.find()) {
-            stackByPunctuation.push(matcher.group());
-        }
-        return stackByPunctuation;
     }
 
 }

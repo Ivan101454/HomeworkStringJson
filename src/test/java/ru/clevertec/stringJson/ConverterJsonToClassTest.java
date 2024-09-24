@@ -14,7 +14,7 @@ class ConverterJsonToClassTest {
 
     @Test
     void shouldReturnObjectOfClassWithoutCollection() throws NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-        Map<String, Map> mapOfJson = DataForTests.getMapOfJson;
+        Map<String, Map> mapOfJson = DataForTests.getMapOfJsonWithoutList;
         Person expectPerson = DataForTests.getJavaObjectWithoutCollection();
         Map objectMap = mapOfJson.get("Map%d".formatted(mapOfJson.size() - 1));
 
